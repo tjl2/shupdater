@@ -38,7 +38,7 @@ when /4\.2\..*/
   # Add ping rule to rules file
   Net::SSH.start(@server, 'root') do |ssh|
     puts "Changing ping rule to allow local pinging"
-    ssh.exec!('sed -i s/"Ping/ACCEPT\s+net\s+$FW"/"Ping/ACCEPT\t\tall\t\t\tall"/g ' + SHWL_PATH + '/rules')
+    ssh.exec!('sed -i s/"Ping\/ACCEPT\s*net\s*\$FW"/"Ping\/ACCEPT\t\tall\t\t\tall"/g ' + SHWL_PATH + '/rules')
     puts "Restarting shorewall..."
     puts ssh.exec("shorewall restart")
   end
